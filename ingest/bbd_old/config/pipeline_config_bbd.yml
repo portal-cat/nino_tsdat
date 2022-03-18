@@ -1,0 +1,346 @@
+# TODO – Developer: Fill out this file. You can find the official documentation at
+# https://github.com/tsdat/tsdat/blob/main/examples/templates/ingest_pipeline_template.yml
+# or open an existing example in this repository to see what you can do here. Note that
+# the some projects may use slightly different metadata conventions and requirements
+# than tsdat.
+
+
+pipeline:
+  type: Ingest
+
+  # These parameters will be used to name files.
+  location_id: "Ecobee"
+  dataset_name: "bbd_datasets"
+  qualifier: parameters
+  temporal: "5min"
+  data_level: "b1" # If not applying QC this should be set to "a1"
+
+dataset_definition:
+  attributes:
+    title: BBD_Ecobee dataset
+    description: "Ecobee data for four states"
+    conventions: MHKiT-Cloud Data Standards v. 1.0
+    institution: Lawrence Berkeley National Laboratory
+    code_url: https://github.com/tsdat/ingest-template
+    location_meaning: "Ecobee"
+
+  dimensions:
+    time:
+      length: unlimited
+
+  variable_defaults:
+    dims: [time]
+    attrs:
+      _FillValue: 0
+
+  variables:
+    time:
+      input:
+        name: "DateTime"
+        converter:
+          classname: tsdat.utils.converters.StringTimeConverter
+          parameters:
+            timezone: UTC
+            time_format: "%Y/%m/%d %H:%M"
+      dims: [time]
+      type: long
+      attrs:
+        long_name: Time (UTC)
+        standard_name: time
+        units: seconds since 1970-01-01T00:00:00
+
+    Indoor_AverageTemperature:
+      input:
+        name: T_ctrl
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+
+    Indoor_CoolSetpoint:
+      input:
+        name: T_stp_cool
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+    
+    Indoor_HeatSetpoint:
+      input:
+        name: T_stp_heat
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+    
+    Indoor_Humidity:
+      input:
+        name: Humidity
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+    
+    # HeatingEquipmentStage1_RunTime:
+    #   input:
+    #     name: auxHeat1
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+    
+    # HeatingEquipmentStage2_RunTime:
+    #   input:
+    #     name: auxHeat2
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+    
+    # HeatingEquipmentStage3_RunTime:
+    #   input:
+    #     name: auxHeat3
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+    
+    # CoolingEquipmentStage1_RunTime:
+    #   input:
+    #     name: compCool1
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+   
+    # CoolingEquipmentStage2_RunTime:
+    #   input:
+    #     name: compCool2
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+   
+    # HeatPumpsStage1_RunTime:
+    #   input:
+    #     name: compHeat1
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+    
+    # HeatPumpsStage2_RunTime:
+    #   input:
+    #     name: compHeat2
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+   
+    # Fan_RunTime:
+    #   input:
+    #     name: fan
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+
+    Thermostat_Temperature:
+      input:
+        name: Thermostat_Temperature
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+
+    # Thermostat_DetectedMotion:
+    #   input:
+    #     name: Thermostat_Motion
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+
+    RemoteSensor1_Temperature:
+      input:
+        name: Remote_Sensor_1_Temperature
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+
+    # RemoteSensor1_DetectedMotion:
+    #   input:
+    #     name: Remote_Sensor_1_Motion
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+
+    RemoteSensor2_Temperature:
+      input:
+        name: Remote_Sensor_2_Temperature
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+
+    # RemoteSensor2_DetectedMotion:
+    #   input:
+    #     name: Remote_Sensor_2_Motion
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+
+    RemoteSensor3_Temperature:
+      input:
+        name: Remote_Sensor_3_Temperature
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+
+    # RemoteSensor3_DetectedMotion:
+    #   input:
+    #     name: Remote_Sensor_3_Motion
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+
+    RemoteSensor4_Temperature:
+      input:
+        name: Remote_Sensor_4_Temperature
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+
+    # RemoteSensor4_DetectedMotion:
+    #   input:
+    #     name: Remote_Sensor_4_Motion
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+
+    RemoteSensor5_Temperature:
+      input:
+        name: Remote_Sensor_5_Temperature
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+
+    # RemoteSensor5_DetectedMotion:
+    #   input:
+    #     name: Remote_Sensor_5_Motion
+    #     units: unitless
+    #   type: float
+    #   attrs:
+    #     units: unitless
+
+    Outdoor_Temperature:
+      input:
+        name: T_out
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+
+    Outdoor_Humidity:
+      input:
+        name: RH_out
+        units: unitless
+      type: float
+      attrs:
+        units: unitless
+
+#-----------------------------------------------------------------
+quality_management:
+  #---------------------------------------------------------------
+  manage_missing_coordinates:
+    checker:
+      classname: tsdat.qc.checkers.CheckMissing
+    handlers:
+      - classname: tsdat.qc.handlers.FailPipeline
+    variables:
+      - time
+
+  manage_coordinate_monotonicity:
+    checker:
+      classname: tsdat.qc.checkers.CheckMonotonic
+    handlers:
+      - classname: tsdat.qc.handlers.FailPipeline
+        parameters:
+          ascending: True
+          correction: "Coordinate data was sorted in order to ensure monotonicity."
+    variables:
+      - time
+
+  #---------------------------------------------------------------
+  manage_missing_values:
+    checker:
+      classname: tsdat.qc.checkers.CheckMissing
+    handlers:
+      - classname: tsdat.qc.handlers.RemoveFailedValues
+    variables:
+      - DATA_VARS
+
+  #---------------------------------------------------------------
+  manage_small_gap_values:
+    checker:
+      classname: ingest.bbd.pipeline.qc.CheckGap
+      parameters:
+        min_time_gap: 0
+        max_time_gap: 60
+    handlers:
+      - classname: ingest.bbd.pipeline.qc.ReplaceFailedValuesWithLinear
+      - classname: tsdat.qc.handlers.RecordQualityResults
+        parameters:
+          bit: 1
+          assessment: Bad
+          meaning: "Gap spans less than 60 minutes"
+    variables:
+      - DATA_VARS
+
+  #---------------------------------------------------------------
+  manage_big_gap_values:
+    checker:
+      classname: ingest.bbd.pipeline.qc.CheckGap
+      parameters:
+        min_time_gap: 60
+        max_time_gap: 1440
+    handlers:
+      - classname: ingest.bbd.pipeline.qc.ReplaceFailedValuesWithKNN
+        parameters:
+          correlation_thresh: 0.3
+      - classname: tsdat.qc.handlers.RecordQualityResults
+        parameters:
+          bit: 2
+          assessment: Bad
+          meaning: "Gap spans more than 60 minutes and less than a day"
+    variables:
+      - DATA_VARS
+
+  #---------------------------------------------------------------
+  manage_day_gap_values:
+    checker:
+      classname: ingest.bbd.pipeline.qc.CheckGap
+      parameters:
+        min_time_gap: 1440
+        max_time_gap: 999999
+    handlers:
+      - classname: ingest.bbd.pipeline.qc.ReplaceFailedValuesWithKNN
+        parameters:
+          correlation_thresh: 0.3
+      - classname: tsdat.qc.handlers.RecordQualityResults
+        parameters:
+          bit: 3
+          assessment: Bad
+          meaning: "Gap spans more than a day"
+    variables:
+      - DATA_VARS
+
+
